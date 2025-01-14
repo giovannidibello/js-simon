@@ -13,17 +13,11 @@ const message = document.getElementById("message");
 // invoco la funzione dei numeri random
 estraiNumero();
 
+// invoco la funzione del countdown
+setTimeout(creoCountdown, 30000);
 
 
 
-
-
-
-// creo una funzione asincrona che imposta un timer di 30 secondi
-
-// i numeri scompaiono dalla pagina
-
-// allo scadere faccio visualizzare in pagina 5 campi di input
 
 // creo una funzione al click del pulsante
 
@@ -36,7 +30,6 @@ estraiNumero();
 
 // creo una funzione che genera numeri random pescati da un array
 
-// funzione estrai numero
 function estraiNumero() {
 
     // creo un array con tutti i numeri da generare
@@ -62,17 +55,40 @@ function estraiNumero() {
 
         console.log(number);
 
-        // // Pulisco la lista esistente
+        // pulisco la lista esistente
         numbersList.innerHTML = "";
 
-        // // creo un <li> per ogni numero estratto e lo aggiungo alla lista
+        // creo un <li> per ogni numero estratto e lo aggiungo alla lista
         numbersExtract.forEach((number) => {
             const li = document.createElement("li");
             li.textContent = number;
             numbersList.appendChild(li);
-        });       
+        });
 
     }
-    
+
 }
+
+
+// creo una funzione asincrona che imposta un timer di 30 secondi
+
+function creoCountdown() {
+
+    // le istruzioni scompaiono dalla pagina
+    instructions.style.display = "none";
+
+    // seleziono tutti i <li>
+    const listItems = numbersList.querySelectorAll("li");
+
+    // i numeri scompaiono dalla pagina
+    listItems.forEach((item) => {
+        item.style.display = "none";
+    });
+
+    // allo scadere faccio visualizzare in pagina 5 campi di input
+    answersForm.className = "d";
+}
+
+
+
 
