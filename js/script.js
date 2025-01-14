@@ -11,7 +11,7 @@ const button = document.querySelector("button");
 const message = document.getElementById("message");
 
 // setto i secondi di partenza
-let seconds = 3;
+let seconds = 30;
 countDown.innerText = seconds;
 
 // invoco la funzione del countdown
@@ -131,7 +131,7 @@ button.addEventListener("click", function (event) {
 
     // restituisce quanti numeri sono stati individuati
     if (numeriIndovinati.length === 1) {
-        
+
         // mostra il numero indovinato
         message.innerHTML = `Hai indovinato il numero: (${numeriIndovinati})`;
 
