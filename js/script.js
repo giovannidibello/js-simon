@@ -47,7 +47,7 @@ function estraiNumero() {
             // metto il numero estratto in un altro array
             numbersExtract.push(number);
         }
-        
+
     }
     // pulisco la lista esistente
     numbersList.innerHTML = "";
@@ -131,15 +131,29 @@ button.addEventListener("click", function (event) {
 
     // restituisce quanti numeri sono stati individuati
     if (numeriIndovinati.length === 1) {
-        // Mostra il numero indovinato
+        
+        // mostra il numero indovinato
         message.innerHTML = `Hai indovinato il numero: (${numeriIndovinati})`;
-    
-    } else if (numeriIndovinati.length > 1) {
-        // Mostra tutti i numeri indovinati
+
+    } else if (numeriIndovinati.length > 1 && numeriIndovinati.length < 5) {
+
+        // mostra i numeri indovinati
         message.innerHTML = `Hai indovinato ${numeriIndovinati.length} numeri: (${numeriIndovinati.join(", ")})`;
+
+    } else if (numeriIndovinati.length === numbersInput.length) {
+
+        // tutti i numeri sono stati indovinati
+        message.innerHTML = `Congratulazioni hai indovinato tutti i numeri: (${numeriIndovinati.join(", ")})`;
+
+        // cambio colore al testo
+        message.classList.remove ("text-danger");
+        message.classList.add ("text-success");
+
     } else {
+
         // se non ci sono numeri indovinati
         message.innerHTML = "Non hai indovinato nessun numero.";
+
     }
 
     console.log("Numeri inseriti:", numbersInput);
