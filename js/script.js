@@ -2,6 +2,13 @@
 // Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 
 // seleziono gli elementi del dom dalla pagina
+const countDown = document.getElementById("countdown");
+const instructions = document.getElementById("instructions");
+const numbersList = document.getElementById("numbers-list");
+const answersForm = document.getElementById("answers-form");
+const numbersForm = document.querySelectorAll("form-control");
+const button = document.querySelector("button");
+const message = document.getElementById("message");
 
 // creo una funzione che genera numeri random pescati da un array
 
