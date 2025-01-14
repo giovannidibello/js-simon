@@ -24,36 +24,30 @@ estraiNumero();
 const numbersRandom = estraiNumero();
 
 
-
-
 // FUNCTION
 
 // creo una funzione che genera numeri random pescati da un array
 
 function estraiNumero() {
 
-    // creo un array con tutti i numeri da generare
-    const numbersToExtract = [
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-        11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-        21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
-        31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-        41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-    ];
-
     // inizializzo l'array dei numeri estratti
     const numbersExtract = [];
 
     for (let i = 0; i < 5; i++) {
 
-        // estraggo un numero con indice casuale
-        const indiceCasuale = Math.floor(Math.random() * numbersToExtract.length);
-        // elimino dall'array numeri da estrarre il numero estratto
-        const number = numbersToExtract.splice(indiceCasuale, 1)[0];
-        // metto il numero estratto in un altro array
-        numbersExtract.push(number);
+        // genero un numero random
+        let number = Math.floor(Math.random() * 50) + 1;
 
-        console.log(number);
+        if (numbersExtract.includes(number)) {
+
+            // elimino il numero già presente
+            i--;
+            
+        } else {
+            // metto il numero estratto in un altro array
+            numbersExtract.push(number);
+        }
+        
     }
     // pulisco la lista esistente
     numbersList.innerHTML = "";
@@ -78,7 +72,7 @@ function creoCountdown() {
     if (seconds === 0) {
         // fermo l'esecuzione
         clearInterval(countDown);
-        
+
         // le istruzioni cambiano
         instructions.innerText = "Inserisci tutti i numeri che ricordi (l'ordine non è importante)";
 
@@ -94,7 +88,7 @@ function creoCountdown() {
         answersForm.className = "d";
     } else {
         // decremento i secondi
-        seconds = seconds -1;
+        seconds = seconds - 1;
         countDown.innerText = seconds;
     }
 
