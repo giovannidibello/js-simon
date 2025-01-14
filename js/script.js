@@ -11,7 +11,7 @@ const button = document.querySelector("button");
 const message = document.getElementById("message");
 
 // setto i secondi di partenza
-let seconds = 30;
+let seconds = 3;
 countDown.innerText = seconds;
 
 // invoco la funzione del countdown
@@ -42,7 +42,7 @@ function estraiNumero() {
 
             // elimino il numero già presente
             i--;
-            
+
         } else {
             // metto il numero estratto in un altro array
             numbersExtract.push(number);
@@ -100,6 +100,9 @@ function creoCountdown() {
 button.addEventListener("click", function (event) {
     event.preventDefault();
 
+    // disabilito il bottone
+    button.disabled = true;
+
     //  inizializzo un array per i numeri in input
     const numbersInput = [];
 
@@ -127,9 +130,13 @@ button.addEventListener("click", function (event) {
 
 
     // restituisce quanti numeri sono stati individuati
-    if (numeriIndovinati.length > 0) {
+    if (numeriIndovinati.length === 1) {
+        // Mostra il numero indovinato
+        message.innerHTML = `Hai indovinato il numero: (${numeriIndovinati})`;
+    
+    } else if (numeriIndovinati.length > 1) {
         // Mostra tutti i numeri indovinati
-        message.innerHTML = `Hai indovinato i numeri: (${numeriIndovinati.join(", ")})`;
+        message.innerHTML = `Hai indovinato ${numeriIndovinati.length} numeri: (${numeriIndovinati.join(", ")})`;
     } else {
         // se non ci sono numeri indovinati
         message.innerHTML = "Non hai indovinato nessun numero.";
