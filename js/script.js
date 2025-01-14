@@ -10,14 +10,20 @@ const numbersForm = document.querySelectorAll(".form-control");
 const button = document.querySelector("button");
 const message = document.getElementById("message");
 
+// setto i secondi di partenza
+let seconds = 30;
+countDown.innerText = seconds;
+
+// invoco la funzione del countdown
+setInterval(creoCountdown, 1000);
+
 // invoco la funzione dei numeri random
 estraiNumero();
 
 // salvo l'array ritornato dalla funzione estraiNumero
 const numbersRandom = estraiNumero();
 
-// invoco la funzione del countdown
-setTimeout(creoCountdown, 3000);
+
 
 
 // FUNCTION
@@ -68,19 +74,31 @@ function estraiNumero() {
 
 function creoCountdown() {
 
-    // le istruzioni cambiano
-    instructions.innerText = "Inserisci tutti i numeri che ricordi (l'ordine non è importante)";
+    // se sono alla fine
+    if (seconds === 0) {
+        // fermo l'esecuzione
+        clearInterval(countDown);
+        
+        // le istruzioni cambiano
+        instructions.innerText = "Inserisci tutti i numeri che ricordi (l'ordine non è importante)";
 
-    // seleziono tutti i <li>
-    const listItems = numbersList.querySelectorAll("li");
+        // seleziono tutti i <li>
+        const listItems = numbersList.querySelectorAll("li");
 
-    // i numeri scompaiono dalla pagina
-    listItems.forEach((item) => {
-        item.style.display = "none";
-    });
+        // i numeri scompaiono dalla pagina
+        listItems.forEach((item) => {
+            item.style.display = "none";
+        });
 
-    // allo scadere faccio visualizzare in pagina 5 campi di input
-    answersForm.className = "d";
+        // allo scadere faccio visualizzare in pagina 5 campi di input
+        answersForm.className = "d";
+    } else {
+        // decremento i secondi
+        seconds = seconds -1;
+        countDown.innerText = seconds;
+    }
+
+
 }
 
 
@@ -109,7 +127,7 @@ button.addEventListener("click", function (event) {
     numbersInput.forEach(inputNumber => {
         if (numbersRandom.includes(inputNumber)) {
             console.log(`Hai indovinato (${inputNumber})`);
-            numeriIndovinati.push(inputNumber);            
+            numeriIndovinati.push(inputNumber);
         }
     });
 
