@@ -13,17 +13,11 @@ const message = document.getElementById("message");
 // invoco la funzione dei numeri random
 estraiNumero();
 
+// salvo l'array ritornato dalla funzione estraiNumero
+const numbersRandom = estraiNumero();
+
 // invoco la funzione del countdown
-setTimeout(creoCountdown, 30000);
-
-
-
-
-// creo una funzione al click del pulsante
-
-// la funzione confronta i numeri inseriti con quelli visualizzati all'inizio
-
-// restituisce se e quanti numeri sono stati individuati
+setTimeout(creoCountdown, 3000);
 
 
 // FUNCTION
@@ -54,19 +48,19 @@ function estraiNumero() {
         numbersExtract.push(number);
 
         console.log(number);
-
-        // pulisco la lista esistente
-        numbersList.innerHTML = "";
-
-        // creo un <li> per ogni numero estratto e lo aggiungo alla lista
-        numbersExtract.forEach((number) => {
-            const li = document.createElement("li");
-            li.textContent = number;
-            numbersList.appendChild(li);
-        });
-
     }
+    // pulisco la lista esistente
+    numbersList.innerHTML = "";
 
+    // creo un <li> per ogni numero estratto e lo aggiungo alla lista
+    numbersExtract.forEach((number) => {
+        const li = document.createElement("li");
+        li.textContent = number;
+        numbersList.appendChild(li);
+    });
+
+
+    return numbersExtract;
 }
 
 
@@ -88,6 +82,54 @@ function creoCountdown() {
     // allo scadere faccio visualizzare in pagina 5 campi di input
     answersForm.className = "d";
 }
+
+
+// creo una funzione al click del pulsante
+button.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    //  inizializzo un array per i numeri in input
+    const numbersInput = [];
+
+    // la funzione confronta i numeri inseriti con quelli visualizzati all'inizio
+    for (let i = 0; i < numbersForm.length; i++) {
+
+        // prendo il valore dell'input
+        const numbers = parseInt(numbersForm[i].value);
+
+        // metto il valore nell'array
+        numbersInput.push(numbers);
+
+    }
+
+    // inizializzo l'array numeri indovinati
+    const numeriIndovinati = [];
+
+    // confronto i numeri inseriti con quelli estratti
+    numbersInput.forEach(inputNumber => {
+        if (numbersRandom.includes(inputNumber)) {
+            console.log(`Hai indovinato (${inputNumber})`);
+            numeriIndovinati.push(inputNumber);            
+        }
+    });
+
+
+    // restituisce quanti numeri sono stati individuati
+    if (numeriIndovinati.length > 0) {
+        // Mostra tutti i numeri indovinati
+        message.innerHTML = `Hai indovinato i numeri: (${numeriIndovinati.join(", ")})`;
+    } else {
+        // se non ci sono numeri indovinati
+        message.innerHTML = "Non hai indovinato nessun numero.";
+    }
+
+    console.log("Numeri inseriti:", numbersInput);
+    console.log("Numeri estratti:", numbersRandom);
+
+})
+
+
+
 
 
 
