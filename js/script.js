@@ -68,8 +68,8 @@ function estraiNumero() {
 
 function creoCountdown() {
 
-    // le istruzioni scompaiono dalla pagina
-    instructions.style.display = "none";
+    // le istruzioni cambiano
+    instructions.innerText = "Inserisci tutti i numeri che ricordi (l'ordine non è importante)";
 
     // seleziono tutti i <li>
     const listItems = numbersList.querySelectorAll("li");
