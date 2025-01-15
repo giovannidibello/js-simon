@@ -106,7 +106,7 @@ button.addEventListener("click", function (event) {
     //  inizializzo un array per i numeri in input
     const numbersInput = [];
 
-    // la funzione confronta i numeri inseriti con quelli visualizzati all'inizio
+    // ciclo i numeri in input
     for (let i = 0; i < numbersForm.length; i++) {
 
         // prendo il valore dell'input
@@ -146,8 +146,8 @@ button.addEventListener("click", function (event) {
         message.innerHTML = `Congratulazioni hai indovinato tutti i numeri: (${numeriIndovinati.join(", ")})`;
 
         // cambio colore al testo
-        message.classList.remove ("text-danger");
-        message.classList.add ("text-success");
+        message.classList.remove("text-danger");
+        message.classList.add("text-success");
 
     } else {
 
@@ -160,6 +160,57 @@ button.addEventListener("click", function (event) {
     console.log("Numeri estratti:", numbersRandom);
 
 })
+
+// aggiungo un evento input alla digitazione 
+numbersForm.forEach((inputField, index) => {
+    inputField.addEventListener("input", function () {
+
+        // prendo il valore dell'input corrente
+        const value = parseInt(inputField.value);
+
+        if (isNaN(value)) {
+
+            // messaggio di errore
+            message.innerText = "Inserisci un valore valido";
+
+            // disabilito il bottone
+            button.disabled = true;
+
+        } else {
+            message.innerText = "";
+
+            // variabile flag
+            let duplicateFound = false;
+
+            // ciclo per confrontare se ci sono numeri inseriti uguali
+            for (let i = 0; i < numbersForm.length; i++) {
+
+                // non confronto con se stesso
+                if (i !== index) {
+
+                    // assegno il valore iesimo
+                    const otherValue = parseInt(numbersForm[i].value);
+
+                    // se il valore è uguale ad un altro
+                    if (value === otherValue) {
+                        duplicateFound = true;
+                    }
+                }
+            }
+
+            // se c'è un duplicato restituisce il messaggio
+            if (duplicateFound) {
+                message.innerText = "I valori inseriti non devono essere uguali";
+                // disabilito il bottone
+                button.disabled = true;
+            } else {
+                // abilito il bottone
+                button.disabled = false;
+            }
+        }
+    });
+});
+
 
 
 
