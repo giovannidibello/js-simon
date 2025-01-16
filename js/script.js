@@ -18,17 +18,18 @@ countDown.innerText = seconds;
 setInterval(creoCountdown, 1000);
 
 // invoco la funzione dei numeri random
-estraiNumero();
+estraiNumeri();
+
 
 // salvo l'array ritornato dalla funzione estraiNumero
-const numbersRandom = estraiNumero();
+const numbersRandom = estraiNumeri();
 
 
 // FUNCTION
 
-// creo una funzione che genera numeri random pescati da un array
+// creo una funzione che genera i numeri random
 
-function estraiNumero() {
+function estraiNumeri() {
 
     // inizializzo l'array dei numeri estratti
     const numbersExtract = [];
@@ -49,17 +50,7 @@ function estraiNumero() {
         }
 
     }
-    // pulisco la lista esistente
-    numbersList.innerHTML = "";
-
-    // creo un <li> per ogni numero estratto e lo aggiungo alla lista
-    numbersExtract.forEach((number) => {
-        const li = document.createElement("li");
-        li.textContent = number;
-        numbersList.appendChild(li);
-    });
-
-
+    
     return numbersExtract;
 }
 
